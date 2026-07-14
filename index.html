@@ -3,6 +3,9 @@
   <head>
     <title>Bescheinigungsgenerator Fachschaft Bioinformatik!</title>
     <meta name="robots" content="noindex">
+    <style>
+      input[type="text"] { width: 30em; }
+    </style>
   </head>
   <body>
     <form onsubmit="downloadPDF()">
@@ -28,23 +31,30 @@
       <input type="date" id="bday" name="bday" required><br><br>
 
       <label for="smonth">Beitrittsdatum Fachschaft:</label>
-      <input type="date" id="smonth" name="emonth" required><br><br>
+      <input type="month" id="smonth" name="smonth" required><br><br>
 
       <label for="active">Weiterhin aktiv in der Fachschaft:</label>
       <input type="checkbox" id="active" name="active" checked><br><br>
 
       <label for="emonth">Enddatum Fachschaft:</label>
-      <input type="date" id="emonth" name="emonth" required disabled><br><br>
+      <input type="month" id="emonth" name="emonth" required disabled><br><br>
 
       <label for="customText">Individueller Absatz:</label><br>
       <textarea id="customText" name="customText" rows="6" cols="60" placeholder="Individueller Text">Max leistete einen wertvollen Beitrag zur Fachschaftsarbeit, indem er im zeitlichen Rahmen von durchschnittlich 15 Stunden pro Monat eine Vielzahl an Aufgaben übernahm: Neben der Organisation des Orientierungstags 2022 und des Stammtisches nahm Max regelmäßig an den Treffen der Fachschaft teil, um aktuelle Themen zu besprechen und Vorschläge für die weitere Fachschaftsarbeit einzubringen. Max erstellte zudem eine Vielzahl an Inhalten für die Website der Fachschaft und ist Mitglied im Prüfungsauschuss.</textarea><br><br>
 
       <label for="signature">Unterschrift:</label><br>
       <textarea id="signature" name="signature" rows="4" cols="60" placeholder="Unterschrift">Fachschaft Bioinformatik</textarea><br><br>
+
+      <label for="examRole">Bezeichnung unter der Unterschrift:</label><br>
+      <textarea id="examRole" name="examRole" rows="6" cols="60">Prüfungsausschussvorsitzende/r des gemeinsamen Prüfungsausschusses B.Sc. und M.Sc. Bioinformatik</textarea><br><br>
+
+      <label for="examChair">Unterzeichnende/r (Name, optional):</label>
+      <input type="text" id="examChair" name="examChair"><br><br>
       <input type="submit" value="Bescheinigung generieren">
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"></script>
+    <script src="js/certificate.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

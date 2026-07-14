@@ -1,0 +1,13 @@
+{
+  "name": "student-council-certificate",
+  "version": "1.0.0",
+  "description": "Bescheinigungsgenerator Fachschaft Bioinformatik",
+  "private": true,
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1",
+    "moment": "^2.29.4"
+  }
+}

@@ -1,2 +1,5 @@
 /.DS_Store
 /test.html
+/.vscode
+/node_modules
+/bescheinigung_debug.pdf
