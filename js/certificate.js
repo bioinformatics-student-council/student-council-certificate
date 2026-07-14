@@ -37,6 +37,11 @@
     // Role label under the signature line (defaults to the committee chair)
     const examRole = data.examRole || "Prüfungsausschussvorsitzende/r des gemeinsamen Prüfungsausschusses B.Sc. und M.Sc. Bioinformatik";
 
+    // Fachschaft representative signature (left side), optional via checkbox
+    const repShow = data.repShow !== false;           // default: shown
+    const repRole = data.repRole || "Fachschaftsvertretung";
+    const repName = data.repName || "";
+
     // Input-based phrases
     let introduction = `hiermit bestätigen wir, dass ${fname} ${lname}, geb. am ${moment(bday).format("L")}, sich `;
     let conclusion = `Wir danken ${fname} für ${pronoun == "sie" ? 'ihr' : 'sein'} Engagement und `;
@@ -108,20 +113,30 @@
               signature],
              25, 108.92, { maxWidth: docWidth - 45 });
 
-    // Signature field for the examination committee chair (bottom right)
+    // Signature blocks at the bottom: Fachschaft (left) and committee chair (right)
     const sigLineY = 255;
-    const sigLineLeft = docWidth - 90;   // ~120 mm
-    const sigLineRight = docWidth - 25;  // ~185 mm
+    const sigBlockWidth = 65;            // width of each signature line in mm
     doc.setLineWidth(0.2);
-    doc.line(sigLineLeft, sigLineY, sigLineRight, sigLineY);
     doc.setFontSize(9);
-    // Wrap a long role label to the width of the signature line, then draw
-    // name (if any) + wrapped role as one right-aligned, auto-spaced block.
-    const sigBlockWidth = sigLineRight - sigLineLeft;
-    const sigLines = [];
-    sigLines.push(...doc.splitTextToSize(examRole, sigBlockWidth+10));
-    if (examChair) sigLines.push(examChair);
-    doc.text(sigLines, sigLineRight, sigLineY + 4, { align: "right" });
+
+    // Draws a signature line with the (wrapped) role above an optional name.
+    // align "left"  -> text anchored at the left end of the line
+    // align "right" -> text anchored at the right end of the line
+    function drawSignatureBlock(lineStartX, align, role, name) {
+      doc.line(lineStartX, sigLineY, lineStartX + sigBlockWidth, sigLineY);
+      const anchorX = align === "right" ? lineStartX + sigBlockWidth : lineStartX;
+      const lines = doc.splitTextToSize(role, sigBlockWidth + 10);
+      if (name) lines.push(name);
+      doc.text(lines, anchorX, sigLineY + 4, { align });
+    }
+
+    // Right: examination committee chair (always shown)
+    drawSignatureBlock(docWidth - 25 - sigBlockWidth, "right", examRole, examChair);
+
+    // Left: Fachschaft representative (optional)
+    if (repShow) {
+      drawSignatureBlock(25, "left", repRole, repName);
+    }
 
     return doc;
   }

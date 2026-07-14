@@ -22,7 +22,10 @@ function downloadPDF() {
         customText: document.getElementById('customText').value,
         signature:  document.getElementById('signature').value,
         examChair:  document.getElementById('examChair').value,
-        examRole:   document.getElementById('examRole').value
+        examRole:   document.getElementById('examRole').value,
+        repShow:    document.getElementById('repShow').checked,
+        repRole:    document.getElementById('repRole').value,
+        repName:    document.getElementById('repName').value
     };
 
     // Logo (browser: an <img> element that jsPDF.addImage accepts directly)

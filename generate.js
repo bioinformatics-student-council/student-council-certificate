@@ -27,7 +27,10 @@ const data = {
   customText: '',
   signature:  'Fachschaft Bioinformatik',
   examRole:   '',                       // leer lassen -> Default greift
-  examChair:  'Marcel Schulz'                        // optional; leer lassen für nur die Linie
+  examChair:  'Marcel Schulz',          // optional; leer lassen für nur die Linie
+  repShow:    true,                     // linke Unterschrift (Fachschaft) anzeigen?
+  repRole:    '',                       // leer lassen -> Default "Fachschaftsvertretung"
+  repName:    ''                        // optional; leer lassen für nur die Linie
 };
 // --------------------------------------------------------------------------
 
