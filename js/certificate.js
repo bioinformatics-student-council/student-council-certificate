@@ -44,7 +44,7 @@
 
     // Input-based phrases
     let introduction = `hiermit bestätigen wir, dass ${fname} ${lname}, geb. am ${moment(bday).format("L")}, sich `;
-    let conclusion = `Wir danken ${fname} für ${pronoun == "sie" ? 'ihr' : 'sein'} Engagement und `;
+    let conclusion = `Wir danken ${fname} ${lname} für ${pronoun == "sie" ? 'ihr' : 'sein'} Engagement und `;
     if (active) {
       introduction += `seit ${moment(smonth).format("MMMM YYYY")} ehrenamtlich in der Fachschaft des Studiengangs Bioinformatik an der Goethe-Universität Frankfurt am Main engagiert.`;
       conclusion += `freuen uns auf die weitere Zusammenarbeit!`;
