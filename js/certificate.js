@@ -79,7 +79,7 @@
     // Title
     doc.setFontSize(11);
     doc.setFont('Helvetica', 'bold');
-    doc.text("Bescheinigung über das ehrenamtliches Engagement im Rahmen der Fachschaft", 25, 100);
+    doc.text("Bescheinigung über das ehrenamtliche Engagement im Rahmen der Fachschaft", 25, 100);
 
     // Membership period (uses today's date as end when still active)
     const startDate = moment(smonth);

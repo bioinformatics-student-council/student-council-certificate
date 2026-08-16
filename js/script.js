@@ -3,9 +3,17 @@ const { jsPDF } = window.jspdf;
 document.getElementById('emonth').value = moment().format("YYYY-MM");
 
 document.getElementById('active').onchange = function() {
-  document.getElementById('emonth').disabled = this.checked;
-  document.getElementById('emonth').value = moment().format("YYYY-MM");
+  const emonth = document.getElementById('emonth');
+  emonth.disabled = this.checked;
+  // bereits eingetragenes Enddatum nicht überschreiben
+  if (!emonth.value) emonth.value = moment().format("YYYY-MM");
 };
+
+// Absenden verhindern: sonst lädt die Seite neu und alle Eingaben gehen verloren
+document.getElementById('certForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  downloadPDF();
+});
 
 function downloadPDF() {
     // Read form inputs from the DOM
