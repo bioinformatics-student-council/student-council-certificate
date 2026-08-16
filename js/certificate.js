@@ -34,6 +34,11 @@
       bday, smonth, active, emonth, customText, signature, examChair
     } = data;
 
+    // Weitere Vornamen: immer im Adressfeld des Briefkopfs, im Fließtext nur auf Wunsch
+    const middleNames = (data.middleNames || "").trim();
+    const addressName = [fname, middleNames, lname].filter(Boolean).join(" ");
+    const textName = data.middleNamesEverywhere ? addressName : `${fname} ${lname}`;
+
     // Role label under the signature line (defaults to the committee chair)
     const examRole = data.examRole || "Prüfungsausschussvorsitzende/r des gemeinsamen Prüfungsausschusses B.Sc. und M.Sc. Bioinformatik";
 
@@ -43,8 +48,8 @@
     const repName = data.repName || "";
 
     // Input-based phrases
-    let introduction = `hiermit bestätigen wir, dass ${fname} ${lname}, geb. am ${moment(bday).format("L")}, sich `;
-    let conclusion = `Wir danken ${fname} ${lname} für ${pronoun == "sie" ? 'ihr' : 'sein'} Engagement und `;
+    let introduction = `hiermit bestätigen wir, dass ${textName}, geb. am ${moment(bday).format("L")}, sich `;
+    let conclusion = `Wir danken ${textName} für ${pronoun == "sie" ? 'ihr' : 'sein'} Engagement und `;
     if (active) {
       introduction += `seit ${moment(smonth).format("MMMM YYYY")} ehrenamtlich in der Fachschaft des Studiengangs Bioinformatik an der Goethe-Universität Frankfurt am Main engagiert.`;
       conclusion += `freuen uns auf die weitere Zusammenarbeit!`;
@@ -61,7 +66,7 @@
     doc.text("Fachschaft Bioinformatik · Robert-Mayer-Straße 11-15 · 60325 Frankfurt am Main", 25, 39.7, { maxWidth: 85 });
 
     doc.setFontSize(11);
-    doc.text([fname + " " + lname,
+    doc.text([addressName,
               street,
               zipCity],
              25, 44.7, { maxWidth: 85 });

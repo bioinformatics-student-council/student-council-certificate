@@ -17,6 +17,8 @@ const buildCertificate = require('./js/certificate.js');
 const data = {
   pronoun:    'er',                     // 'er' oder 'sie'
   fname:      'Maxi',
+  middleNames: 'Alex Kim',              // leer lassen für keine
+  middleNamesEverywhere: false,         // true -> auch im Fließtext, sonst nur im Briefkopf
   lname:      'Mustermann',
   street:     'Musterstraße 1',
   zipCity:    '60325 Frankfurt am Main',

@@ -20,6 +20,8 @@ function downloadPDF() {
     const data = {
         pronoun:    document.getElementById('pronoun').value,
         fname:      document.getElementById('fname').value,
+        middleNames: document.getElementById('middleNames').value,
+        middleNamesEverywhere: document.getElementById('middleNamesEverywhere').checked,
         lname:      document.getElementById('lname').value,
         street:     document.getElementById('street').value,
         zipCity:    document.getElementById('zipCity').value,
